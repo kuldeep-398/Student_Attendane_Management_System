@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2>Add New Subject</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save Subject</button>
+        <a href="{% url 'admin_subjects' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

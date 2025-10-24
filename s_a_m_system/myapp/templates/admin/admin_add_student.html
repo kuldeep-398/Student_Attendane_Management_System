@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Add Student {% if subject_id %}for Subject ID: {{ subject_id }}{% endif %}</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">Add Student</button>
+        <a href="{% if request.user.role == 'teacher' %}{% url 'teacher_dashboard' %}{% else %}{% url 'admin_students' %}{% endif %}" class="btn btn-secondary">Cancel</a>
+    </form>
+</div>
+{% endblock %}

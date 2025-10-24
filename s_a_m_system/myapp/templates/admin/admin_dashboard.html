@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2 class="text-center mt-4">Admin Dashboard</h2>
+
+<div class="row mt-5">
+
+  <!-- Teachers Card -->
+  <div class="col-md-3">
+    <a href="{% url 'admin_teachers' %}" style="text-decoration: none; color: inherit;">
+      <div class="card p-3 mb-3 text-center shadow-sm">
+        <h5>Teachers</h5>
+        <p class="fs-4 fw-bold text-primary">{{ total_teachers }}</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Students Card -->
+  <div class="col-md-3">
+    <a href="{% url 'admin_students' %}" style="text-decoration: none; color: inherit;">
+      <div class="card p-3 mb-3 text-center shadow-sm">
+        <h5>Students</h5>
+        <p class="fs-4 fw-bold text-success">{{ total_students }}</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Subjects Card -->
+  <div class="col-md-3">
+    <a href="{% url 'admin_subjects' %}" style="text-decoration: none; color: inherit;">
+      <div class="card p-3 mb-3 text-center shadow-sm">
+        <h5>Subjects</h5>
+        <p class="fs-4 fw-bold text-info">{{ total_subjects }}</p>
+      </div>
+    </a>
+  </div>
+
+  <!-- Total Users Card -->
+  <div class="col-md-3">
+    <a href="{% url 'admin_dashboard' %}" style="text-decoration: none; color: inherit;">
+      <div class="card p-3 mb-3 text-center shadow-sm">
+        <h5>Total Users</h5>
+        <p class="fs-4 fw-bold text-dark">{{ total_users }}</p>
+      </div>
+    </a>
+  </div>
+
+</div>
+
+{% endblock %}

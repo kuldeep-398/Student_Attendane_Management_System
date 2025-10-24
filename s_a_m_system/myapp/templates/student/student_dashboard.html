@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Student Dashboard</h2>
+<p><b>Attendance Percentage:</b> {{ percentage }}%</p>
+<table border="1" cellpadding="5">
+    <tr><th>Date</th><th>Status</th></tr>
+    {% for record in attendance %}
+        <tr>
+            <td>{{ record.date }}</td>
+            <td>{{ record.status }}</td>
+        </tr>
+    {% endfor %}
+</table>
+{% endblock %}
