@@ -1,12 +1,40 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container mt-4">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher - Mark Attendance Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mark_attendance.css' %}">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'teacher_dashboard' %}" class="brand">SAM System - Teacher</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'teacher_dashboard' %}" class="active">Dashboard</a></li>
+
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+ <div class="container">
     <h3>{{ subject.name }} - Attendance ({{ today }})</h3>
-    <a href="{% url 'admin_add_student' %}?subject_id={{ subject.id }}" class="btn btn-success w-100">Add Student</a>
+    <a href="{% url 'admin_add_student' %}?subject_id={{ subject.id }}" class="btn">Add Student</a><br><br>
+    
 
     <form method="POST">
         {% csrf_token %}
-        <table class="table table-bordered">
+        <table class="table">
             <thead>
                 <tr>
                     <th>Student Name</th>
@@ -24,7 +52,22 @@
                 {% endfor %}
             </tbody>
         </table>
-        <button type="submit" class="btn btn-primary">Save / Update Attendance</button>
+        <button type="submit" class="btn">Save / Update Attendance</button>
     </form>
 </div>
-{% endblock %}
+
+
+
+    <footer style="text-align: center; padding: 15px 0; max-height: 48px;background: rgba(0, 0, 0, 0.8); color: #fff; position: relative; bottom: 0; width: 100%; font-size: 0.9rem;">
+        <p>© 2025 SAM System | All Rights Reserved</p>
+    </footer>
+
+    <!-- Link to external JavaScript -->
+    <script src="{% static 'js/teacher_dashboard.js' %}" defer></script>
+
+</body>
+
+</html>
+
+
+

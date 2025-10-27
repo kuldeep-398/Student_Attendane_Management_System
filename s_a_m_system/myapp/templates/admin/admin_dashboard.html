@@ -1,50 +1,60 @@
-{% extends "base.html" %}
-{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - SAM System</title>
 
-<h2 class="text-center mt-4">Admin Dashboard</h2>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'admin_dashboard' %}" class="brand">SAM System - Admin</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'admin_teachers' %}">Teachers</a></li>
+                <li><a href="{% url 'admin_students' %}">Students</a></li>
+                <li><a href="{% url 'admin_subjects' %}">Subjects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
 
-<div class="row mt-5">
+    <!-- Main container -->
+    <div class="container" style="flex: 1;">
+        
+        <h2 class="dashboard-title">Admin Dashboard</h2>
 
-  <!-- Teachers Card -->
-  <div class="col-md-3">
-    <a href="{% url 'admin_teachers' %}" style="text-decoration: none; color: inherit;">
-      <div class="card p-3 mb-3 text-center shadow-sm">
-        <h5>Teachers</h5>
-        <p class="fs-4 fw-bold text-primary">{{ total_teachers }}</p>
-      </div>
-    </a>
-  </div>
 
-  <!-- Students Card -->
-  <div class="col-md-3">
-    <a href="{% url 'admin_students' %}" style="text-decoration: none; color: inherit;">
-      <div class="card p-3 mb-3 text-center shadow-sm">
-        <h5>Students</h5>
-        <p class="fs-4 fw-bold text-success">{{ total_students }}</p>
-      </div>
-    </a>
-  </div>
+        <div class="dashboard-cards">
+            <a href="{% url 'admin_dashboard' %}" class="dashboard-card">
+                <h3>Total Users</h3>
+                <p class="count total">{{ total_users }}</p>
+            </a>
 
-  <!-- Subjects Card -->
-  <div class="col-md-3">
-    <a href="{% url 'admin_subjects' %}" style="text-decoration: none; color: inherit;">
-      <div class="card p-3 mb-3 text-center shadow-sm">
-        <h5>Subjects</h5>
-        <p class="fs-4 fw-bold text-info">{{ total_subjects }}</p>
-      </div>
-    </a>
-  </div>
+            <a href="{% url 'admin_teachers' %}" class="dashboard-card">
+                <h3>Teachers</h3>
+                <p class="count teachers">{{ total_teachers }}</p>
+            </a>
 
-  <!-- Total Users Card -->
-  <div class="col-md-3">
-    <a href="{% url 'admin_dashboard' %}" style="text-decoration: none; color: inherit;">
-      <div class="card p-3 mb-3 text-center shadow-sm">
-        <h5>Total Users</h5>
-        <p class="fs-4 fw-bold text-dark">{{ total_users }}</p>
-      </div>
-    </a>
-  </div>
+            <a href="{% url 'admin_students' %}" class="dashboard-card">
+                <h3>Students</h3>
+                <p class="count students">{{ total_students }}</p>
+            </a>
 
-</div>
+            <a href="{% url 'admin_subjects' %}" class="dashboard-card">
+                <h3>Subjects</h3>
+                <p class="count subjects">{{ total_subjects }}</p>
+            </a>
+        </div>
+    </div>
 
-{% endblock %}
+    <footer style="text-align: center; padding: 15px 0; background: rgba(0, 0, 0, 0.8); color: #fff; font-size: 0.9rem; margin-top: auto;">
+        <p>© 2025 SAM System | All Rights Reserved</p>
+    </footer>
+
+</body>

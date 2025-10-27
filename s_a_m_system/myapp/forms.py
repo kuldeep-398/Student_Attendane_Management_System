@@ -3,14 +3,27 @@ from django.contrib.auth.forms import UserCreationForm
 from .models import CustomUser, Attendance, Student,Subject
 
 class RegisterForm(UserCreationForm):
+    subject = forms.ModelChoiceField(queryset=Subject.objects.all(), required=False)
+
     class Meta:
         model = CustomUser
-        fields = ['username', 'email', 'password1', 'password2', 'role']
+        fields = ['username', 'first_name', 'last_name', 'full_name', 'email', 'subject', 'role', 'password1', 'password2']
 
     def __init__(self, *args, **kwargs):
-        super(RegisterForm, self).__init__(*args, **kwargs)
-        for fieldname in ['username', 'password1', 'password2']:
-            self.fields[fieldname].help_text = None
+        super().__init__(*args, **kwargs)
+
+        # Remove password help texts
+        self.fields['password1'].help_text = ''
+        self.fields['password2'].help_text = ''
+        
+        # Optional: remove username help text too
+        self.fields['username'].help_text = ''
+
+        # Customize labels
+        self.fields['first_name'].label = "First Name"
+        self.fields['last_name'].label = "Last Name"
+        self.fields['full_name'].label = "Full Name (for Admin)"
+        self.fields['subject'].label = "Subject"
 
 
 class LoginForm(forms.Form):

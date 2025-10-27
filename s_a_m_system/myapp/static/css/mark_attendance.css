@@ -1,0 +1,107 @@
+.container {
+    max-width: 1100px;
+    margin: 40px auto; 
+    padding: 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); 
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: #3498db;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-weight: 800;
+    font-size: 1rem;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+.btn-primary {
+    background-color: #2ecc71;
+}
+
+.btn-primary:hover {
+    background-color: #27ae60;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+table thead {
+    background-color: #34495e;
+    color: #fff;
+}
+
+table th, table td {
+    padding: 12px 20px;
+    text-align: left;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #dcdcdc;
+}
+
+table tbody tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+table tbody tr:hover {
+    background-color: #bdc3c7;
+}
+
+input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin-right: 10px;
+}
+
+table th {
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+table td {
+    font-size: 1rem;
+    color: #0099ff;
+    font-weight: 700;
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+
+    h3 {
+        font-size: 1.6rem;
+    }
+
+    table th, table td {
+        padding: 8px 10px;
+    }
+
+    .btn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+}

@@ -1,12 +1,53 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container mt-4">
-    <h2>Edit Subject: {{ subject.name }}</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Update</button>
-        <a href="{% url 'admin_subjects' %}" class="btn btn-secondary">Cancel</a>
-    </form>
-</div>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Subject</title>
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_add_subject.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'admin_dashboard' %}" class="brand">SAM System - Admin</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'admin_teachers' %}">Teachers</a></li>
+                <li><a href="{% url 'admin_students' %}">Students</a></li>
+                <li><a href="{% url 'admin_subjects' %}" class="active">Subjects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="card">
+            <h2 class="card-title">Edit Subject: {{ subject.name }}</h2>
+
+            <form method="POST" class="form">
+                {% csrf_token %}
+                <div class="form-body">
+                    {{ form.as_p }}
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Update</button>
+                    <a href="{% url 'admin_subjects' %}" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="text-align: center; padding: 15px 0; margin-top: 75px; background: rgba(0, 0, 0, 0.8); color: #fff; position: relative; bottom: 0; width: 100%; font-size: 0.9rem;">
+        <p>© 2025 SAM System | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

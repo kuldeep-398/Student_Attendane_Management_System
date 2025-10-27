@@ -1,14 +1,136 @@
-{% extends 'base.html' %}
-{% block content %}
-<h2>Student Dashboard</h2>
-<p><b>Attendance Percentage:</b> {{ percentage }}%</p>
-<table border="1" cellpadding="5">
-    <tr><th>Date</th><th>Status</th></tr>
-    {% for record in attendance %}
-        <tr>
-            <td>{{ record.date }}</td>
-            <td>{{ record.status }}</td>
-        </tr>
-    {% endfor %}
-</table>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/student_dashboard.css' %}">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'student_dashboard' %}" class="brand">SAM System - Student</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'student_dashboard' %}" class="active">Dashboard</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <div class="card">
+            <h2>Student Dashboard</h2>
+        </div>
+        
+
+    <!-- Attendance Summary -->
+        <div class="card">
+            <h5><b>Attendance Percentage:</b> <p> {{ percentage }}%</p></h5>
+        </div>
+
+        <!-- Date & Subject Selection -->
+        <div class="card">
+            <form method="GET">
+                <div >
+                    <label for="subject" class="form-label">Select Subject:</label>
+                    <select name="subject_id" id="subject" class="form-select">
+                        {% for subj in subjects %}
+                            <option value="{{ subj.id }}" {% if subj.id == selected_subject_id %}selected{% endif %}>
+                                {{ subj.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div>
+                    <label for="date" class="form-label">Select Date:</label>
+                    <input type="date" id="date" name="date" class="form-control" value="{{ selected_date|date:'Y-m-d' }}">
+                </div>
+                <div >
+                    <label for="date" class="form-label"></label>
+                    <button type="submit" style="margin-top: 23px;">View Attendance</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Attendance Records -->
+        <div class="card">
+            <h5> <b>Attendance Records</b> </h5>
+            <table class="table">
+                <thead class="table-light">
+                    <tr>
+                        <th>Date</th>
+                        <th>Status</th>
+                        <th>Subject</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for record in attendance %}
+                        <tr>
+                            <td>{{ record.date|date:"M d, Y" }}</td>
+                            <td>
+                                {% if record.status == 'P' %}
+                                    <span class="badge bg-success">Present</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Absent</span>
+                                {% endif %}
+                            </td>
+                            <td>{{ record.subject.name }}</td>
+                        </tr>
+                    {% empty %}
+                        <tr><td colspan="3" class="text-muted">No records found for selected date.</td></tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pie Chart -->
+        <div class="card">
+            <h5><b>Monthly Attendance Overview</b></h5>
+            <canvas id="attendanceChart" style="max-width: 250px; margin: auto;"></canvas>
+        </div>
+    </div>
+
+    <footer style="text-align: center; padding: 15px 0; max-height: 48px;background: rgba(0, 0, 0, 0.8); color: #fff; position: relative; bottom: 0; width: 100%; font-size: 0.9rem;">
+        <p>© 2025 SAM System | All Rights Reserved</p>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const ctx = document.getElementById('attendanceChart');
+    const attendanceChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Present', 'Absent'],
+            datasets: [{
+                data: [{{ present_count }}, {{ absent_count }}],
+                backgroundColor: ['#4CAF50', '#F44336'],
+                hoverBackgroundColor: ['#45A049', '#E53935'],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            responsive: true,
+            cutout: '70%',
+            plugins: {
+                legend: {
+                    position: 'bottom',
+                    labels: { boxWidth: 15, font: { size: 12 } }
+                },
+                tooltip: { enabled: true }
+            }
+        }
+    });
+</script>
+
+</body>
+
+</html>

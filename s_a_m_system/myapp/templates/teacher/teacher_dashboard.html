@@ -1,13 +1,39 @@
-{% extends "base.html" %}
-{% block content %}
-<div class="container mt-4">
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher - Mark Attendance Dashboard</title>
+
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/teacher_dashboard.css' %}">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'teacher_dashboard' %}" class="brand">SAM System - Teacher</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'teacher_dashboard' %}" class="active">Dashboard</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
     <h2>Teacher Dashboard</h2>
     <div class="row">
         {% for subject in subjects %}
-        <div class="col-md-4 mb-3">
-            <div class="card shadow-sm p-3">
+        <div>
+            <div class="card">
                 <h5>{{ subject.name }}</h5>
-                <a href="{% url 'mark_attendance' subject.id %}" class="btn btn-primary mt-2">Mark Attendance</a>
+                <a href="{% url 'mark_attendance' subject.id %}" class="btn">Mark Attendance</a>
             </div>
         </div>
         {% empty %}
@@ -15,4 +41,11 @@
         {% endfor %}
     </div>
 </div>
-{% endblock %}
+
+<footer style="text-align: center; height: 78px; line-height: 78px; background: rgba(0, 0, 0, 0.8); color: #fff; position: fixed; bottom: 0; left: 0; width: 100%; font-size: 0.9rem; z-index: 1000; padding: 0;">
+    <p style="margin: 0;">© 2025 SAM System | All Rights Reserved</p>
+</footer>
+
+</body>
+
+</html>

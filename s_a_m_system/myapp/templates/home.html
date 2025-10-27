@@ -1,7 +1,67 @@
-{% extends "base.html" %}
-{% block content %}
-  <div class="text-center">
-    <h1>Welcome to Student Attendance Management (SAM)</h1>
-    <p>Login or register to proceed.</p>
-  </div>
-{% endblock %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAM System</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+</head>
+<body> 
+
+    <div class="home-page">
+          <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'home' %}" class="brand">SAM System</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>  
+              
+                {% if user.is_authenticated %}
+                    <li>Hello, {{ user.first_name }}</li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main container -->
+    <div class="container">
+
+        <!-- Messages -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+
+        <!-- Page content -->
+        <div class="section-card">
+            <!-- Hero Section -->
+            <div class="hero-section">
+                <h1>Welcome to Student Attendance Management (SAM)</h1>
+                <p>Login or register to proceed and manage your attendance system efficiently.</p>
+                <a href="{% url 'register' %}" class="cta-btn">Get Started</a>
+              
+                <!-- Quote Section -->
+                <div class="quote-container">
+                    <blockquote>
+                        "Education is the most powerful weapon which you can use to change the world."
+                    </blockquote>
+                    <cite>- Nelson Mandela</cite>
+                </div>
+              </div>
+        </div>
+    </div>
+    </div>
+    <footer style="text-align: center; padding: 15px 0; background: black; color: #fff; position: relative; bottom: 0; width: 100%; font-size: 0.9rem;">
+        <p>© 2025 SAM System | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

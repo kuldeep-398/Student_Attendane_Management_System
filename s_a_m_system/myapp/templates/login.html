@@ -1,15 +1,65 @@
-{% extends 'base.html' %}
-{% block content %}
-<div>
-    <h2>Login</h2>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        {% if error %}
-        <p class="text-danger">{{ error }}</p>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - SAM System</title>
+
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+<body class="login-page">
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'home' %}" class="brand">SAM System</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'home' %}">Home</a></li>
+                {% if user.is_authenticated %}
+                    <li>Hello, {{ user.first_name }}</li>
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    <li><a href="{% url 'home' %}">Home</a></li>
+                {% else %}
+                    <li><a href="{% url 'login' %}">Login</a></li>
+                    <li><a href="{% url 'register' %}">Register</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main container -->
+    <div class="container">
+
+        <!-- Messages (if any) -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">{{ message }}</div>
+            {% endfor %}
         {% endif %}
-        <button type="submit">Login</button>
-    </form>
-    <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
-</div>
-{% endblock %}
+
+        <!-- Page content -->
+        <div class="section-card">
+            <!-- Login Form -->
+            <div class="login-form">
+                <h2>Login</h2>
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    {% if error %}
+                        <p class="text-danger">{{ error }}</p>
+                    {% endif %}
+                    <button type="submit">Login</button>
+                </form>
+                <p>Don't have an account? <a href="{% url 'register' %}">Register</a></p>
+            </div>
+        </div>
+    </div>
+    <footer style="text-align: center; padding: 15px 0; background: rgba(0, 0, 0, 0.8); color: #fff; position: relative; bottom: 0; width: 100%; font-size: 0.9rem;">
+        <p>© 2025 SAM System | All Rights Reserved</p>
+    </footer>
+
+</body>
+</html>

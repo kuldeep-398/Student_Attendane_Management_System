@@ -1,0 +1,117 @@
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    padding: 10px 15px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 40px auto;
+    color: #fff;
+    text-align: center;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    color: #f9b233;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+}
+
+.form-body input,
+.form-body select,
+.form-body textarea {
+    width: 85%;
+    padding: 5px 8px;
+    margin: 2px auto;
+    border-radius: 5px;
+    border: 1px solid #f9b233;
+    background: transparent;
+    color: #fff;
+    font-size: 0.95rem;
+    outline: none;
+}
+
+.form-body input:focus,
+.form-body select:focus,
+.form-body textarea:focus {
+    border-color: #ffcc33;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 8px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 6px 12px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: #f9b233;
+    color: #0c1b2a;
+}
+
+.btn-primary:hover {
+    background: #d6951e;
+}
+
+.btn-secondary {
+    background: #555;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background: #777;
+}
+
+.card p a {
+    color: #f9b233;
+    text-decoration: none;
+}
+
+.card p a:hover {
+    text-decoration: underline;
+}
+
+.text-danger {
+    color: red;
+    font-size: 0.85rem;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+        padding: 12px 10px;
+    }
+
+    .form-body input,
+    .form-body select,
+    .form-body textarea,
+    .btn {
+        width: 95%;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 6px;
+    }
+}

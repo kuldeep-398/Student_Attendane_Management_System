@@ -1,0 +1,142 @@
+.container {
+    width: 80%;
+    max-width: 1200px;
+    margin: 30px auto; 
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px; 
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); 
+}
+
+h2 {
+    font-size: 2.3rem;
+    color: #2c3e50; 
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 10px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+.card h5{
+    color: #003264;
+    font-size: 1.7rem;
+}
+
+.card h5 p{
+    color: #0080ff;
+    font-size: 1.5rem;
+}
+
+
+form {
+    display: flex;
+    justify-content: space-between;
+    gap: 5px;
+    flex-wrap: wrap;
+    color: #003264;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+form select, form input {
+    background-color: #fff;
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #0000ff;
+    border-radius: 8px;
+    margin-top: 5px;
+    width: 60%;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+    color: #0080ff; 
+}
+
+form select:focus, form input:focus {
+    border-color: #3498db;
+}
+
+form button {
+    padding: 12px 30px;
+    background-color: #108ce0;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+.card th{
+    color: #003264;
+    padding: 10px 25px;
+    font-size: 1.3rem;
+    font-weight: 800;
+}
+
+.card td{
+    color: #0080ff;
+    padding: 10px 25px;
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+
+
+.card.records-table .present {
+    background-color: #4caf50;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.card.records-table .absent {
+    background-color: #f44336;
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.card.pie-chart {
+    text-align: center;
+}
+
+.card.pie-chart canvas {
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+
+@media screen and (max-width: 768px) {
+    .container {
+        width: 90%;
+    }
+
+    form select, form input {
+        width: 100%;
+    }
+
+    form button {
+        width: 100%;
+    }
+
+    .card {
+        width: 100%;
+    }
+}

@@ -12,7 +12,7 @@ urlpatterns = [
     # Custom dashboards
     path('admin_dashboard/', views.admin_dashboard, name='admin_dashboard'),
     path('teacher_dashboard/', views.teacher_dashboard, name='teacher_dashboard'),
-    path('student_dashboard/', views.student_dashboard, name='student_dashboard'),
+    path('student/dashboard/', views.student_dashboard, name='student_dashboard'),
 
     # CRUD-admin [Teachers]
     path('admins/teachers/', views.admin_teachers, name='admin_teachers'),
@@ -26,6 +26,9 @@ urlpatterns = [
     path('admins/students/add/', views.admin_add_student, name='admin_add_student'),
     path('admins/students/edit/<int:student_id>/', views.admin_edit_student, name='admin_edit_student'),
     path('admins/students/delete/<int:student_id>/', views.admin_delete_student, name='admin_delete_student'),
+    path('admins/students/approve/<int:student_id>/', views.admin_approve_student, name='admin_approve_student'),
+
+
 
     # Admin CRUD: [Subjects]
     path('admins/subjects/', views.admin_subjects, name='admin_subjects'),

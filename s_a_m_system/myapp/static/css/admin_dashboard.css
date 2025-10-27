@@ -1,0 +1,76 @@
+.dashboard-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    color: #f9b233; 
+    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2); 
+}
+
+.dashboard-cards {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
+}
+
+
+.dashboard-card {
+    background: linear-gradient(145deg, #c0bab0, #f2dfb1);
+    border-radius: 15px;
+    padding: 20px;
+    width: 250px;
+    height: 200px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    color: #f97807;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+    text-decoration: none;
+    position: relative;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2); 
+    background: linear-gradient(145deg, #f9b233, #d6951e); 
+}
+
+.dashboard-card h3 {
+    font-size: 1.9rem;
+    margin-bottom: 15px;
+    font-weight: bolder;
+    color: #180b58;
+}
+
+.dashboard-card .count {
+    font-size: 2.2rem;
+    font-weight: 600;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 50%;
+    background-color: #333;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.dashboard-card:hover .count {
+    transform: scale(1.2);
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .dashboard-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .dashboard-card {
+        width: 80%;
+        margin-bottom: 20px;
+    }
+}

@@ -1,0 +1,143 @@
+.container {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    padding-left: 20px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.35);
+    padding: 25px;
+    width: 500px;
+    color: #fff;
+    font-size: 1.2rem;
+    text-align: left;
+}
+
+.card-title {
+    font-size: 1.8rem;
+    color: #f9b233;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.form-body {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-body input {
+    width: 20%;
+    padding: 10px;
+    margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid #f9b233;
+    background: transparent;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+}
+
+.form-body input:focus {
+    border-color: #ffcc33;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.checkbox-label {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    color: #f9b233;
+    text-align: left;
+}
+
+.checkbox-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    padding-left: 0;
+    gap: 5px;
+}
+
+.checkbox-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: flex-start;
+}
+
+.checkbox-item input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+.checkbox-item label {
+    font-size: 1rem;
+    color: #fff;
+    display: inline-block;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 5px;
+    padding: 8px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background: #f9b233;
+    color: #0c1b2a;
+    width: auto;
+}
+
+.btn-primary:hover {
+    background: #d6951e;
+}
+
+.btn-secondary {
+    background: #565779;
+    color: #fff;
+    width: auto;
+}
+
+.btn-secondary:hover {
+    background: #777;
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-body input {
+        width: 100%;
+    }
+
+    .checkbox-group {
+        padding-left: 0;
+    }
+
+    .checkbox-group label {
+        font-size: 0.95rem;
+    }
+
+    .form-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

@@ -1,72 +1,104 @@
-{% extends "base.html" %}
-{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ subject.name }} - Subject Management</title>
 
-<div class="container mt-4">
-  <h2 class="text-center text-primary">{{ subject.name }} - Management</h2>
-  <hr>
+    <!-- Link to external CSS -->
+    <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'css/admin_subject_details.css' %}">
 
-  <div class="row">
-    <!-- TEACHERS CARD -->
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm p-3">
-        <h4 class="text-success text-center">Teachers</h4>
-        <hr>
-        {% if teachers %}
-          <ul class="list-unstyled">
-            {% for t in teachers %}
-              <li class="d-flex justify-content-between align-items-center mb-1">
-                {{ t.username }}
-                <form method="POST" class="mb-0">
-                  {% csrf_token %}
-                  <input type="hidden" name="teacher_id" value="{{ t.id }}">
-                  <button type="submit" name="remove_teacher" class="btn btn-danger btn-sm">Remove</button>
-                </form>
-              </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="text-center">No teachers assigned yet.</p>
-        {% endif %}
+</head>
+<body>
 
-        <div class="text-center mt-3">
-          <a href="{% url 'admin_add_teacher' %}?subject_id={{ subject.id }}" class="btn btn-success">+ Add Teacher</a>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="{% url 'admin_dashboard' %}" class="brand">SAM System - Admin</a>
+            <ul class="nav-links">
+                <li><a href="{% url 'admin_dashboard' %}">Dashboard</a></li>
+                <li><a href="{% url 'admin_teachers' %}">Teachers</a></li>
+                <li><a href="{% url 'admin_students' %}">Students</a></li>
+                <li><a href="{% url 'admin_subjects' %}" class="active">Subjects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+            </ul>
         </div>
-      </div>
-    </div>
+    </nav>
 
-    <!-- STUDENTS CARD -->
-    <div class="col-md-6 mb-4">
-      <div class="card shadow-sm p-3">
-        <h4 class="text-info text-center">Students</h4>
-        <hr>
-        {% if students %}
-          <ul class="list-unstyled">
-            {% for s in students %}
-              <li class="d-flex justify-content-between align-items-center mb-1">
-                {{ s.username }}
-                <form method="POST" class="mb-0">
-                  {% csrf_token %}
-                  <input type="hidden" name="student_id" value="{{ s.id }}">
-                  <button type="submit" name="remove_student" class="btn btn-danger btn-sm">Remove</button>
-                </form>
-              </li>
-            {% endfor %}
-          </ul>
-        {% else %}
-          <p class="text-center">No students enrolled yet.</p>
-        {% endif %}
+    <!-- Main Container -->
+    <div class="container">
+        <h2 class="dashboard-title" style="color: #f9b233; ">{{ subject.name }} - Subject Management</h2>
 
-        <div class="text-center mt-3">
-          <a href="{% url 'admin_add_student' %}?subject_id={{ subject.id }}" class="btn btn-info">+ Add Student</a>
+        <div class="row">
+
+            <!-- TEACHERS CARD -->
+            <div>
+                <div class="card">
+                    <h4 >Teachers</h4>
+                    <hr>
+                    {% if teachers %}
+                        <ul class="list-unstyled">
+                            {% for t in teachers %}
+                                <li>
+                                    {{ t.username }}
+                                    <form method="POST" class="mb-0">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="teacher_id" value="{{ t.id }}">
+                                        <button type="submit" name="remove_teacher" class="btn btn-danger btn-sm">Remove</button>
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-center">No teachers assigned yet.</p>
+                    {% endif %}
+
+                    <div class="text-center mt-3">
+                        <a href="{% url 'admin_add_teacher' %}?subject_id={{ subject.id }}" class="btn btn-success">+ Add Teacher</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- STUDENTS CARD -->
+            <div>
+                <div class="card">
+                    <h4>Students</h4>
+                    <hr>
+                    {% if students %}
+                        <ul class="list-unstyled">
+                            {% for s in students %}
+                                <li>
+                                    {{ s.username }}
+                                    <form method="POST" class="mb-0">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="student_id" value="{{ s.id }}">
+                                        <button type="submit" name="remove_student" class="btn btn-danger btn-sm">Remove</button>
+                                    </form>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {% else %}
+                        <p class="text-center">No students enrolled yet.</p>
+                    {% endif %}
+
+                    <div class="text-center mt-3">
+                        <a href="{% url 'admin_add_student' %}?subject_id={{ subject.id }}" class="btn btn-info">+ Add Student</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
-      </div>
+
+        <div style="margin-top: 50px;">
+            <a href="{% url 'admin_subjects' %}" class="btn btn-secondary">Back to Subjects</a>
+        </div>
     </div>
+    <footer style="text-align: center; padding: 15px 0; margin-top: 35px; background: rgba(0, 0, 0, 0.8); color: #fff; position: relative; bottom: 0; width: 100%; font-size: 0.9rem;">
+        <p>© 2025 SAM System | All Rights Reserved</p>
+    </footer>
 
-  </div>
-
-  <div class="text-center mt-4">
-    <a href="{% url 'admin_subjects' %}" class="btn btn-secondary">Back to Subjects</a>
-  </div>
-</div>
-
-{% endblock %}
+</body>
+</html>

@@ -1,0 +1,110 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    background-color: #f4f6f8;
+}
+
+.navbar {
+    background-color: #0c1b2a;
+    padding: 15px 30px;
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links li a {
+    text-decoration: none;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
+}
+
+.nav-links li a:hover {
+    background-color: #f9b233;
+    color: #0c1b2a;
+}
+
+.brand {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #f9b233;
+    text-decoration: none;
+}
+
+.hero-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);  /* Add a dark overlay for contrast */
+}
+
+.hero-section h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.hero-section p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+.cta-btn {
+    background: #f9b233;
+    padding: 12px 25px;
+    border-radius: 5px;
+    text-decoration: none;
+    color: #0c1b2a;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.cta-btn:hover {
+    background: #d6951e;
+}
+
+.quote-container {
+    font-size: 1.6rem;
+    font-style: italic;
+    color: #fff;
+    max-width: 700px;
+    margin: 95px auto;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5); 
+    border-radius: 10px;
+    text-align: center;
+}
+
+.quote-container blockquote {
+    margin: 0;
+    font-size: 2rem;
+}
+
+.quote-container cite {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #f9b233;
+}
+
+.home-page, .login-page, .register-page {
+    background: url("https://images.squarespace-cdn.com/content/v1/554b8150e4b01cb58c517c75/1726074926880-VG56O3XRWWJDUS9OX2DB/image-asset.jpeg") no-repeat center center/cover;
+    color: white;  
+}
+

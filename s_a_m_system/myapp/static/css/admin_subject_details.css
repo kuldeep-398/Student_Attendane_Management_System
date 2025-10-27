@@ -1,0 +1,157 @@
+.container {
+    margin-top: 70px;
+    width: 100%;
+    max-width: 100%;
+    padding: 0 20px;
+    text-align: center;
+}
+
+.dashboard-title {
+    font-size: 1.9rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 50px;
+    color: #f9b233;
+}
+
+.row {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 20px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    padding: 25px;
+    width: 100%;
+    max-width: 360px;
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.card h4 {
+    color: #fff;
+    text-align: center;
+    font-weight: 800;
+    font-size: 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 8px;
+    margin-bottom: 20px;
+}
+
+.list-unstyled {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    height: 175px;
+    overflow-y: auto;
+}
+
+.list-unstyled li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    color: #fff;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.list-unstyled li:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.02);
+}
+
+.list-unstyled::-webkit-scrollbar {
+    width: 6px;
+}
+.list-unstyled::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 8px 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+}
+
+.btn-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.btn-success:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+.btn-info {
+    background-color: #17a2b8;
+    color: #fff;
+}
+
+.btn-info:hover {
+    background-color: #138496;
+    transform: scale(1.05);
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+    transform: scale(1.05);
+}
+
+.text-center.mt-3 {
+    margin-top: 20px;
+}
+
+.btn-secondary {
+    background-color: #1e00ff;
+    color: #fff;
+    border-radius: 8px;
+    font-weight: 800;
+    font-size: 1.2rem;
+}
+
+.btn-secondary:hover {
+    background-color: #0091ff;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        max-width: 100%;
+        width: 90%;
+    }
+}

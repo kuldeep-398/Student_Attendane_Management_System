@@ -4,13 +4,16 @@ from django.utils import timezone
 
 # ---- Custom User ----
 class CustomUser(AbstractUser):
-    ROLE_CHOICES = (
+    ROLE_CHOICES = [
         ('admin', 'Admin'),
         ('teacher', 'Teacher'),
         ('student', 'Student'),
-    )
-    role = models.CharField(max_length=10, choices=ROLE_CHOICES, default='student')
+    ]
+
+    role = models.CharField(max_length=10, choices=ROLE_CHOICES)
     is_approved = models.BooleanField(default=False)
+    subject = models.ForeignKey('Subject', null=True, blank=True, on_delete=models.SET_NULL)
+    full_name = models.CharField(max_length=100, blank=True, null=True)
 
     def __str__(self):
         return f"{self.username} ({self.role})"
@@ -21,6 +24,8 @@ class Student(models.Model):
     user = models.OneToOneField(CustomUser, on_delete=models.CASCADE)
     roll_no = models.CharField(max_length=20)
     course = models.CharField(max_length=50)
+
+    
 
     def __str__(self):
         return f"{self.user.username} - {self.roll_no}"
