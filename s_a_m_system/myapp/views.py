@@ -32,7 +32,6 @@ def register_view(request):
             else:
                 user.subject = subject
 
-            # Admin approval for teachers
             if user.role == 'teacher':
                 user.is_approved = False
             else:
@@ -130,7 +129,6 @@ def admin_add_teacher(request):
             teacher.is_approved = True
             teacher.save()
 
-            # Associate with subject if subject_id exists
             if subject_id:
                 subject = Subject.objects.get(id=subject_id)
                 subject.teachers.add(teacher)
@@ -189,7 +187,6 @@ def admin_add_student(request):
     if request.user.role not in ['admin', 'teacher']:
         return redirect('home')
 
-    # Get subject_id from query params
     subject_id = request.GET.get('subject_id')
 
     if request.method == 'POST':
@@ -203,7 +200,6 @@ def admin_add_student(request):
                 subject = Subject.objects.get(id=subject_id)
                 subject.students.add(student)
 
-            # Redirect back to correct page
             if request.user.role == 'admin':
                 return redirect('admin_subject_detail', subject_id=subject_id) if subject_id else redirect('admin_students')
             else:  # teacher
@@ -351,7 +347,6 @@ def teacher_dashboard(request):
     if request.user.role != 'teacher':
         return redirect('home')
 
-    # Get subjects assigned to this teacher
     subjects = Subject.objects.filter(teachers=request.user)
 
     return render(request, 'teacher/teacher_dashboard.html', {'subjects': subjects})
@@ -364,19 +359,16 @@ def mark_attendance(request, subject_id):
     if request.user.role != 'teacher':
         return redirect('home')
 
-    # Get the subject
     subject = get_object_or_404(Subject, id=subject_id, teachers=request.user)
 
-    # Get Student instances (Student model) for this subject
     students = Student.objects.filter(user__in=subject.students.all())
     today = timezone.now().date()
 
-    # Handle form submission
     if request.method == 'POST':
         for student in students:
             status = request.POST.get(f'status_{student.id}')
             if status in ['P', 'A']:
-                # Update or create attendance record
+
                 Attendance.objects.update_or_create(
                     student=student,
                     subject=subject,
@@ -385,7 +377,6 @@ def mark_attendance(request, subject_id):
                 )
         return redirect('teacher_dashboard')
 
-    # Prepare existing attendance data
     attendance_dict = {}
     for student in students:
         attendance = Attendance.objects.filter(
@@ -414,17 +405,13 @@ from .models import Attendance, Subject, Student
 
 @login_required
 def student_dashboard(request):
-    # Only students allowed
     if request.user.role != 'student':
         return redirect('home')
     
-    # Get student object
     student = get_object_or_404(Student, user=request.user)
     
-    # Subjects for this student (since Subject.students -> CustomUser)
     subjects = Subject.objects.filter(students=request.user)
     
-    # Selected subject (default: first subject)
     selected_subject_id = request.GET.get('subject_id')
     selected_subject = None
     if selected_subject_id:
@@ -432,7 +419,6 @@ def student_dashboard(request):
     elif subjects.exists():
         selected_subject = subjects.first()
     
-    # Selected date (default today)
     date_str = request.GET.get('date')
     if date_str:
         try:
@@ -442,15 +428,11 @@ def student_dashboard(request):
     else:
         selected_date = timezone.now().date()
     
-    # Attendance records for selected subject
     attendance_records = Attendance.objects.filter(
         student=student, subject=selected_subject
     ).order_by('-date') if selected_subject else Attendance.objects.none()
-    
-    # Filter attendance up to selected date
     attendance_records = attendance_records.filter(date__lte=selected_date)
-    
-    # Monthly summary (for pie chart)
+
     current_month = timezone.now().month
     current_year = timezone.now().year
     monthly_attendance = Attendance.objects.filter(
